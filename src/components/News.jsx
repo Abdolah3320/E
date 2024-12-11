@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 
 export default function News() {
   const [news, setNews] = useState([]);
-
   useEffect(() => {
     const fetchNews = async () => {
       const API = "62cb71db5cbb4137b37fbca2a4706bbc";
-      const response = await fetch(
+      const response = await axios.get(
         `https://newsapi.org/v2/everything?q=keyword&apiKey=${API}`
       );
-      const data = await response.json();
+      const data = response.data;
       console.log(data);
       setNews(data.articles);
     };
